@@ -28,7 +28,8 @@ except FileNotFoundError:
     exit()
 '''
 #read_fhand = fhand.read() #read file
-
+# Read and parse the "From " lines and pull out the addresses from the line. 
+# Count the number of messages from each person using a dictionary.
 for line in fhand:
     words = line.split()
     if len(words) < 3 or words[0] != 'From':
@@ -40,4 +41,13 @@ for line in fhand:
         else:
             emails[words[1]] += 1
 
-print(emails)
+
+
+# After all the data has been read, print the person with the most commits by 
+# creating a list of (count, email) tuples from the dictionary. 
+
+max_key_value = max(emails, key = emails.get)
+max_value = emails[max_key_value]
+print(max_value, 'by', max_key_value)
+
+
